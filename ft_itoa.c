@@ -6,11 +6,11 @@
 /*   By: chrrazaf <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 11:50:40 by chrrazaf          #+#    #+#             */
-/*   Updated: 2026/02/10 12:58:18 by chrrazaf         ###   ########.fr       */
+/*   Updated: 2026/02/12 12:55:55 by chrrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libf.h"
+#include "libft.h"
 
 char	*the_char(char *str, int n, int sign, int i)
 {
@@ -36,7 +36,6 @@ char	*the_char(char *str, int n, int sign, int i)
 
 char	*ft_itoa(int n)
 {
-	int		mod;
 	int		div;
 	int		sign;
 	int		i;

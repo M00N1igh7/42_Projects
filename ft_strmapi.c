@@ -6,14 +6,16 @@
 /*   By: chrrazaf <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 12:58:46 by chrrazaf          #+#    #+#             */
-/*   Updated: 2026/02/10 17:44:25 by chrrazaf         ###   ########.fr       */
+/*   Updated: 2026/02/12 15:52:24 by chrrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	unsigned int		i;
-	char				str;
+	char				*str;
 
 	i = 0;
 	while (s[i] != '\0')

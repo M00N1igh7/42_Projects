@@ -6,7 +6,7 @@
 /*   By: chrrazaf <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 14:29:33 by chrrazaf          #+#    #+#             */
-/*   Updated: 2026/02/06 10:12:40 by chrrazaf         ###   ########.fr       */
+/*   Updated: 2026/02/12 16:03:08 by chrrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int	j;
 
 	i = verifyier(s1, set, 0, 0);
-	j = verifyier(s1, set, ft_strlen(s1) - 1, 1);
+	j = verifyier(s1, set, ft_strlen((char *)s1) - 1, 1);
 	return (ft_substr(s1, i, (++j) - i));
 }

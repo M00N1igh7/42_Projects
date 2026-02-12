@@ -6,14 +6,15 @@
 /*   By: chrrazaf <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 13:49:43 by chrrazaf          #+#    #+#             */
-/*   Updated: 2026/01/22 14:21:33 by chrrazaf         ###   ########.fr       */
+/*   Updated: 2026/02/12 13:10:16 by chrrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
 
-void	*ft_memcpy(void *dst, const void *src, unsigned int n)
+#include "libft.h"
+
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	unsigned int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < n)
