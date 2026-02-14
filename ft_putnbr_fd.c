@@ -6,7 +6,7 @@
 /*   By: chrrazaf <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 13:20:01 by chrrazaf          #+#    #+#             */
-/*   Updated: 2026/02/12 13:11:12 by chrrazaf         ###   ########.fr       */
+/*   Updated: 2026/02/14 14:07:10 by chrrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@ void	ft_putnbr_fd(int n, int fd)
 			n *= (-1);
 		}
 		mod = (n % 10) + '0';
-		if (n != 0)
+		if (n >= 10)
 		{
 			ft_putnbr_fd((n / 10), fd);
 			write(fd, &mod, 1);
 		}
+		else
+			write(fd, &mod, 1);
 	}
 }

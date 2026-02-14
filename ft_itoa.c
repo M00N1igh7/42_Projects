@@ -6,58 +6,60 @@
 /*   By: chrrazaf <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 11:50:40 by chrrazaf          #+#    #+#             */
-/*   Updated: 2026/02/12 12:55:55 by chrrazaf         ###   ########.fr       */
+/*   Updated: 2026/02/14 11:56:06 by chrrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*the_char(char *str, int n, int sign, int i)
+char	*the_char(char *str, long n, int sign, int i)
 {
-	int	div;
-	int	mod;
+	long	div;
+	int		mod;
 
-	i = i + 1;
-	str[i] = '\0';
-	mod = n % 10;
 	div = n;
-	while (div != 0)
+	if (!str)
+		return (NULL);
+	if (div == 0)
+	{
+		*(str + 1) = '\0';
+		*str = '0';
+	}
+	str[i] = '\0';
+	while (div > 0)
 	{
 		i--;
 		mod = div % 10;
 		str[i] = mod + '0';
 		div /= 10;
 	}
-	i--;
 	if (sign)
-		str[i] = '-';
+		str[0] = '-';
 	return (str);
 }
 
 char	*ft_itoa(int n)
 {
-	int		div;
+	long	m;
 	int		sign;
 	int		i;
+	long	div;
 	char	*str;
 
-	i = 1;
 	sign = (n < 0);
+	m = (long)n;
+	i = 0;
 	if (sign)
-		n = n * (-1);
-	div = n / 10;
-	while (div != 0)
+		m *= (-1);
+	div = m;
+	if (!div)
+		i++;
+	while (div)
 	{
 		div /= 10;
 		i++;
 	}
-	str = malloc((i + sign + 1) * sizeof(char));
-	if (n == -2147483648)
-	{
-		str = "-2147483647";
-		return (str);
-	}
-	if (!str)
-		return (NULL);
-	return (the_char(str, n, sign, i));
+	i += sign;
+	str = (char *)malloc((i + 1) * sizeof(char));
+	return (the_char(str, m, sign, i));
 }

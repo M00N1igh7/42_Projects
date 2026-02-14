@@ -6,7 +6,7 @@
 /*   By: chrrazaf <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 10:13:57 by chrrazaf          #+#    #+#             */
-/*   Updated: 2026/02/10 11:49:28 by chrrazaf         ###   ########.fr       */
+/*   Updated: 2026/02/14 13:02:26 by chrrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static char	*add_wrd(char const *s, int *strt, char c)
 		(*strt)++;
 	}
 	str = (char *) malloc((i + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
 	*(str + i) = '\0';
 	i = 0;
 	while (begin < *strt)
@@ -39,20 +41,45 @@ static char	*add_wrd(char const *s, int *strt, char c)
 	return (str);
 }
 
+static int	count_wrd(char const *s, char c)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	if (!s)
+		return (0);
+	while (s[i] != '\0')
+	{
+		if (s[i] != c && (i == 0 || s[i - 1] == c))
+			j++;
+		i++;
+	}
+	return (j);
+}
+
+char	**free_up(char **str, int j)
+{
+	int	i;
+
+	i = 0;
+	while (i < j)
+	{
+		free((*(str + i)));
+		i++;
+	}
+	free(str);
+	return (NULL);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	int		i[2];
 	int		strt;
 	char	**str;
 
-	i[0] = 0;
-	i[1] = 0;
-	while (s[i[1]] != '\0')
-	{
-		if (s[i[1]] != c && (s[i[1] - 1] == c || (i[1] - 1) == -1))
-			i[0]++;
-		i[1]++;
-	}
+	i[0] = count_wrd(s, c);
 	str = (char **) malloc((i[0] + 1) * sizeof(char *));
 	if (!str)
 		return (NULL);
@@ -62,7 +89,12 @@ char	**ft_split(char const *s, char c)
 	while (i[0] < i[1])
 	{
 		*(str + i[0]) = add_wrd(s, &strt, c);
+		if (!(*(str + i[0])))
+			return (free_up(str, i[0]));
 		i[0]++;
 	}
+	if (!str)
+		return (NULL);
+	*(str + i[0]) = NULL;
 	return (str);
 }

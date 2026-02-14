@@ -6,7 +6,7 @@
 /*   By: chrrazaf <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 12:33:19 by chrrazaf          #+#    #+#             */
-/*   Updated: 2026/02/12 12:36:01 by chrrazaf         ###   ########.fr       */
+/*   Updated: 2026/02/13 12:46:41 by chrrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	size_t	i;
 
 	i = 0;
+	if (size != 0 && nmemb > SIZE_MAX / size)
+		return (NULL);
 	if (nmemb == 0 || size == 0)
 		arr = malloc(0);
 	else
@@ -25,7 +27,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 		arr = malloc(nmemb * size);
 		if (!arr)
 			return (NULL);
-		while (i < size)
+		while (i < (size * nmemb))
 		{
 			*((unsigned char *)(arr + i)) = 0;
 			i++;

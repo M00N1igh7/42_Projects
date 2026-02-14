@@ -6,48 +6,33 @@
 /*   By: chrrazaf <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 13:32:55 by chrrazaf          #+#    #+#             */
-/*   Updated: 2026/02/12 16:00:09 by chrrazaf         ###   ########.fr       */
+/*   Updated: 2026/02/13 12:16:56 by chrrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	ft_fill_tab(size_t *i)
-{
-	int	j;
-
-	j = 0;
-	while (j < 3)
-	{
-		i[j] = 0;
-		j++;
-	}
-}
-
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	size_t			i[3];
-	unsigned char	*str1;
-	unsigned char	*str2;
+	size_t		save;
+	size_t		i;
+	size_t		j;
 
-	ft_fill_tab(i);
-	str1 = (unsigned char *)big;
-	str2 = (unsigned char *)little;
-	if (str2 == (unsigned char *)'\0')
-		return ((char *)str1);
-	while (str2[i[0]] != '\0')
-		i[0]++;
-	while ((str1[i[1]] != '\0') && i[1] < len)
+	i = 0;
+	if (*little == '\0')
+		return ((char *)big);
+	while (big[i] != '\0' && (len < 0 || i < len))
 	{
-		if (str1[i[1]] == str2[i[2]])
+		j = 0;
+		if (big[i] == little[j])
 		{
-			i[2]++;
-			if (i[2] == (i[0] - 1))
-				return ((char *)(str1 + i[1] - i[2] + 1));
+			save = i;
+			while (little[j] != '\0' && little[j] == big[i + j] && i + j < len)
+				j++;
+			if (little[j] == '\0')
+				return ((char *)(big + i));
 		}
-		else
-			i[2] = 0;
-		i[1]++;
+		i++;
 	}
-	return (0);
+	return (NULL);
 }
