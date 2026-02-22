@@ -1,0 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chrrazaf <chrrazaf@student.42antananari    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/27 12:32:05 by chrrazaf          #+#    #+#             */
+/*   Updated: 2026/02/17 09:21:29 by chrrazaf         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_strrchr(const char *s, int c)
+{
+	int	i[2];
+	int	save;
+
+	i[0] = 0;
+	i[1] = 0;
+	save = 0;
+	while (s[i[0]] != '\0')
+	{
+		if (s[i[0]] == (char)c)
+		{
+			save = i[0];
+			i[1]++;
+		}
+		i[0]++;
+		if (s[i[0]] == (char)c)
+		{
+			save = i[0];
+			i[1]++;
+		}
+	}
+	if (i[1] != 0)
+		return ((char *)(s + save));
+	if (s[0] == (char)c)
+		return ((char *)s);
+	return (0);
+}
